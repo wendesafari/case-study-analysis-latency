@@ -29,10 +29,8 @@ in the paper. The script,
 
 Within case_study_analysis.R script, we call for a script functions_definitions.R that loads functions needed in the computations of 
 
-	+ the proposed estimator for the conditional survival function, the proposed cure probability estimator and the proposed latency estimator.
-  +  the bootstrap bandwidths computations for the proposed estimator
-
-
+  + the proposed estimator for the conditional survival function, the cure probability estimator and the latency estimator.
+  +  the bootstrap bandwidths computations for the proposed estimator.
    
   
 3.- simulated_data.csv 
