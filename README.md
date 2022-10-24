@@ -1,4 +1,4 @@
-# Source code and data for the paper: "Latency function estimation under the mixture cure model when the cure status is available"
+# Source code and data to mimic results in the paper: "Latency function estimation under the mixture cure model when the cure status is available"
 
 
 **Authors:**
