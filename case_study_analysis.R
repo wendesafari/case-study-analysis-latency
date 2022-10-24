@@ -14,6 +14,7 @@
 #             of the individuals experiencing the event S0(t) and S0(t|x) 
 ###############################################################################
 
+# Clean your work space
 rm(list=ls()); while(!dev.cur())dev.off(); cat('\014')
 
 # Necessary packages, if not installed the next code will install them and then load
@@ -25,45 +26,43 @@ if(length(new.packages)) install.packages(new.packages)
 lapply(PkgList, function(x)do.call("require", list(x)))
 
 # Source functions 
-invisible(source("functions/functions_definitions.R"))
+invisible(source("functions_definitions.R"))
 
 # Read in the simulated COVID-19 data
-sim_data <- read_csv("data/simulated_data.csv")
+sim_data <- read_csv("simulated_data.csv")
 
-# The simulated_data.csv dataframe has 500 rowa and 6 columns, mimicking  
-# the COVID-19 dataset in Safari et al (2022b) latency paper. The dataframe 
+# The simulated_data.csv dataframe has 2380 rows and 6 columns mimics the COVID-19 dataset in Safari et al (2022b) latency paper. The dataframe
 # contains the following columns:
 
 # 1.- Sex - Dummy variable: 1 = Female, 0 = Male.
 
 # 2.- Age (in years) - A numeric vector contains age of the patients.
 
-# 3.- time (in days) - Time  of patients from hospital ward (HW) to either ICU or to being discharged
-#       or to death or time spent in the hospital ward.
+# 3.- time (in days) - Time spent from hospital ward (HW) to either ICU or to being discharged
+#       or to death or still in the HW.
 
 # 4.- delta - Dummy variable: 1 = ICU admission, 0 = otherwise.
 
 # 5.- cure.known - Dummy variable: (0 = still in HW or ICU, 1 = otherwise).
 
 # 6.- status -  the status of the patient at the end of the study 
-#           (HW, ICU, discharged, Died).
+#               (HW, ICU, discharged, Died).
 
-
-sim_data <- sim_data %>% mutate_if(is.character, as.factor) 
+# Data description
 glimpse(sim_data)
+sim_data <- sim_data %>% mutate_if(is.character, as.factor) 
 
-# Summary statistics
+# Summary statistics: median and its IQR for continous variables
 tab <- sim_data %>%
   dplyr::select(status, time) %>%
-  mutate_if(is.character, as.factor) %>%
   tbl_summary(by = status) %>%
   bold_labels()
 tab
 
-# Extract the dataframe for the estimation
+# Extract the dataframe needed under conditional latency estimation
 dfr <- sim_data[, c("age", "time", "delta", "cure.known")]
 
-# Renaming the column 
+# Renaming the columns 
 # x -> age
 # t -> time
 # d -> delta
@@ -71,7 +70,7 @@ dfr <- sim_data[, c("age", "time", "delta", "cure.known")]
 
 colnames(dfr) <- c("x", "t", "d", "xinu")
 
-# With the existence of tied cases at some of the survival times, we ordered in the
+# With the existence of tied cases at some of the survival times, we ordered in the 
 # following order: uncensored – censored unknown cure status – known cures.
 
 ord.dfr <- as.data.frame(dfr[order(dfr$t, - dfr$d, dfr$xinu),])
