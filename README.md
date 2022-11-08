@@ -18,10 +18,10 @@ An outline of the file structure, which details the R scripts and data, is:
 
 The code in this script describe and analyze Section 4 of the paper. The script, 
     
-     + Loads all necessary libraries.
-     + Sources function file. Check out the functions_definitions.R script to see all the functions called. 
-     + Loads the .csv simulated datasets.
-     + Describe the data and perform the analysis.
+   + Loads all necessary libraries.
+   + Sources function file. Check out the functions_definitions.R script to see all the functions called. 
+   + Loads the .csv simulated datasets.
+   + Describe the data and perform the analysis.
     	     
 
 2.- functions_definitions.R
