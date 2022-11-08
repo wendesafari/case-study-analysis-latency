@@ -1,4 +1,4 @@
-# Source code and data to mimic results in the paper: "Latency function estimation under the mixture cure model when the cure status is available"
+# Source code and data to mimic results in Section 4 of the paper: "Latency function estimation under the mixture cure model when the cure status is available"
 
 
 **Authors:**
@@ -12,12 +12,11 @@ M. Amalia Jácome, University of A Coruña, E-mail: majacome@udc.es
 
 ## Content 
 
-An outline of the files structure, which details the R scripts and data, is:
+An outline of the file structure, which details the R scripts and data, is:
 
 1.- case_study_analysis.R
 
-The code in this script is used to analyze the simulated data that mimics the COVID-19 data described and analyzed in results of the proposed estimator in Figure 3
-in the paper. The script, 
+The code in this script describe and analyze Section 4 of the paper. The script, 
     
      + Loads all necessary libraries.
      + Sources function file. Check out the functions_definitions.R script to see all the functions called. 
